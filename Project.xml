@@ -51,6 +51,7 @@
 	<haxelib name="flixel-ui"/>
 	<haxelib name="flixel-addons"/>
 	<haxelib name="tjson"/>
+	<haxelib name="SScript" if="HSCRIPT_ALLOWED" />
 
 	<haxelib name="linc_luajit" if="LUA_ALLOWED"/>
 	<haxelib name="hxvlc" if="VIDEOS_ALLOWED"/>

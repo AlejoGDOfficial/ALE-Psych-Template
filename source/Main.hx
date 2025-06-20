@@ -134,14 +134,12 @@ class Main extends Sprite
 		
 		addChild(new FlxGame(game.width, game.height, game.initialState, #if (flixel < "5.0.0") game.zoom, #end game.framerate, game.framerate, game.skipSplash, game.startFullscreen));
 
-		#if !mobile
 		fpsVar = new DebugCounter();
 		addChild(fpsVar);
 		Lib.current.stage.align = "tl";
 		Lib.current.stage.scaleMode = StageScaleMode.NO_SCALE;
 		if(fpsVar != null)
 			fpsVar.visible = ClientPrefs.data.showFPS;
-		#end
 
 		#if linux
 		var icon = Image.fromFile("icon.png");
