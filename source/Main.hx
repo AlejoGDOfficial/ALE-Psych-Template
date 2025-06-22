@@ -46,7 +46,7 @@ extern "C" HRESULT WINAPI SetCurrentProcessExplicitAppUserModelID(PCWSTR AppID);
 #end
 
 #if linux
-@:cppInclude('./external/gamemode_client.h')
+@:cppInclude('./cpp/gamemode_client.h')
 @:cppFileCode('
 	#define GAMEMODE_AUTO
 ')

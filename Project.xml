@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <project>
-	<app title="Friday Night Funkin': Psych Engine" file="PsychEngine" packageName="com.shadowmario.psychengine" package="com.shadowmario.psychengine" main="Main" version="0.2.8" company="ShadowMario"/>
+	<app title="Friday Night Funkin'" file="CleanPsych" packageName="com.alejogdofficial.cleanpsych" package="com.alejogdofficial.cleanpsych" main="Main" version="0.2.8" company="AlejoGDOfficial"/>
 
 	<set name="APP_ID" value="0x0100f6c013bbc000"/>
 
@@ -18,7 +18,7 @@
 
 	<define name="PSYCH_WATERMARKS"/>
 	
-	<window width="1280" height="720" fps="" background="#000000" hardware="true" vsync="false"/>
+	<window width="1280" height="720" fps="60" background="#000000" hardware="true" vsync="false"/>
 
 	<window if="desktop" orientation="landscape" fullscreen="false" resizable="true" vsync="false"/>
 
@@ -52,6 +52,7 @@
 	<haxelib name="flixel-addons"/>
 	<haxelib name="tjson"/>
 	<haxelib name="SScript" if="HSCRIPT_ALLOWED" />
+	<haxelib name="sl-windows-api" />
 
 	<haxelib name="linc_luajit" if="LUA_ALLOWED"/>
 	<haxelib name="hxvlc" if="VIDEOS_ALLOWED"/>

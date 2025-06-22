@@ -18,7 +18,6 @@ import openfl.display.BitmapData;
 import shaders.ColorSwap;
 
 import states.StoryMenuState;
-import states.OutdatedState;
 import states.MainMenuState;
 
 import cpp.*;
@@ -120,22 +119,6 @@ class TitleState extends MusicBeatState
 		// IGNORE THIS!!!
 		titleJSON = tjson.TJSON.parse(Paths.getTextFromFile('images/gfDanceTitle.json'));
 
-		#if TITLE_SCREEN_EASTER_EGG
-		if (FlxG.save.data.psychDevsEasterEgg == null) FlxG.save.data.psychDevsEasterEgg = ''; //Crash prevention
-		switch(FlxG.save.data.psychDevsEasterEgg.toUpperCase())
-		{
-			case 'SHADOW':
-				titleJSON.gfx += 210;
-				titleJSON.gfy += 40;
-			case 'RIVER':
-				titleJSON.gfx += 180;
-				titleJSON.gfy += 40;
-			case 'BBPANZU':
-				titleJSON.gfx += 45;
-				titleJSON.gfy += 100;
-		}
-		#end
-
 		if(!initialized)
 		{
 			if(FlxG.save.data != null && FlxG.save.data.fullscreen)
@@ -153,34 +136,21 @@ class TitleState extends MusicBeatState
 		}
 
 		FlxG.mouse.visible = false;
-		#if FREEPLAY
-		MusicBeatState.switchState(new FreeplayState());
-		#elseif CHARTING
-		MusicBeatState.switchState(new ChartingState());
-		#else
-		if(FlxG.save.data.flashing == null && !FlashingState.leftState) {
-			FlxTransitionableState.skipNextTransIn = true;
-			FlxTransitionableState.skipNextTransOut = true;
-			MusicBeatState.switchState(new FlashingState());
-		} else {
-			if (initialized)
-				startIntro();
-			else
-			{
-				new FlxTimer().start(1, function(tmr:FlxTimer)
-				{
-					startIntro();
-				});
-			}
-		}
-		#end
 		
-		WindowsCPP.reDefineMainWindowTitle(lime.app.Application.current.window.title);
-
+		if (initialized)
+			startIntro();
+		else
+		{
+			new FlxTimer().start(1, function(tmr:FlxTimer)
+			{
+				startIntro();
+			});
+		}
+		
 		if (CoolUtil.developerMode)
-			WindowsTerminalCPP.allocConsole();
+			WindowsAPI.showConsole();
 
-		WindowsCPP.setWindowBorderColor(33, 33, 33);
+		WindowsAPI.setWindowBorderColor(33, 33, 33);
 	}
 
 	var logoBl:FlxSprite;
@@ -422,11 +392,8 @@ class TitleState extends MusicBeatState
 
 				new FlxTimer().start(1, function(tmr:FlxTimer)
 				{
-					if (mustUpdate) {
-						MusicBeatState.switchState(new OutdatedState());
-					} else {
-						MusicBeatState.switchState(new MainMenuState());
-					}
+					MusicBeatState.switchState(new MainMenuState());
+
 					closedState = true;
 				});
 				// FlxG.sound.play(Paths.music('titleShoot'), 0.7);

@@ -1,5 +1,4 @@
 @echo off
-color 0b
 
 title Compile the Clean Psych Source Code
 
