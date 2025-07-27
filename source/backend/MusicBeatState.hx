@@ -29,6 +29,8 @@ class MusicBeatState extends FlxUIState
 
 	var _psychCameraInitialized:Bool = false;
 
+	public static var instance:MusicBeatState = null;
+
 	override function create() {
 		var skip:Bool = FlxTransitionableState.skipNextTransOut;
 		#if MODS_ALLOWED Mods.updatedOnState = false; #end
@@ -37,13 +39,15 @@ class MusicBeatState extends FlxUIState
 
 		super.create();
 
+		instance = this;
+
 		if(!skip) {
 			openSubState(new CustomFadeTransition(0.6, true));
 		}
 		FlxTransitionableState.skipNextTransOut = false;
 		timePassedOnState = 0;
 	}
-
+	
 	public function initPsychCamera():PsychCamera
 	{
 		var camera = new PsychCamera();
@@ -219,6 +223,8 @@ class MusicBeatState extends FlxUIState
 
 	override function destroy()
 	{
+		instance = null;
+
         if (shouldClearMemory)
             cleanMemory();
         

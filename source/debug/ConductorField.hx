@@ -1,5 +1,6 @@
 package debug;
 
+@:access(backend.MusicBeatState)
 class ConductorField extends DebugField
 {
     override public function new()
@@ -12,9 +13,9 @@ class ConductorField extends DebugField
     override function updateField(elapsed:Float)
     {
         theText = 'Song Position: ' + Conductor.songPosition;
-        theText += '\n - Step: ' + Conductor.curStep;
-        theText += '\n - Beat: ' + Conductor.curBeat;
-        theText += '\n - Section: ' + Conductor.curSection;
+        theText += '\n - Step: ' + (MusicBeatState.instance == null ? 0 : MusicBeatState.instance.curStep);
+        theText += '\n - Beat: ' + (MusicBeatState.instance == null ? 0 : MusicBeatState.instance.curBeat);
+        theText += '\n - Section: ' + (MusicBeatState.instance == null ? 0 : MusicBeatState.instance.curSection);
         theText += '\nBPM: ' + Conductor.bpm;
 
         text.text = theText;

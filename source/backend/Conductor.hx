@@ -2,6 +2,7 @@ package backend;
 
 import backend.Song;
 import backend.Section;
+import backend.Rating;
 import objects.Note;
 
 typedef BPMChangeEvent =
@@ -142,16 +143,4 @@ class Conductor
 
 		return bpm = newBPM;
 	}
-
-    public static var curStep(get, never):Int;
-    private static function get_curStep():Int
-        return Math.floor(songPosition / 1000 * bpm / 15);
-
-    public static var curBeat(get, never):Int;
-    private static function get_curBeat():Int
-        return Math.floor(curStep / 4);
-
-    public static var curSection(get, never):Int;
-    private static function get_curSection():Int
-        return Math.floor(curBeat / 4);
 }
